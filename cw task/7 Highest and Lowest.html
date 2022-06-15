@@ -5,14 +5,14 @@
 </head>
 <body>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 
-
-		function highAndLow(numbers){
+function highAndLow(numbers){
   const arrStr = numbers.split(" ");
   const arr = arrStr.map(item => Number(item)); //нормальный массив чисел
   const max = Math.max.apply(null, arr);
   const min = Math.min.apply(null, arr);
+
   return `${max} ${min}`;
 }
 

@@ -18,19 +18,19 @@ Should return: 160 (the only even number)*/
 	function findOutlier(integers){
   //your code here
   
-  const onlyOdd = integers.filter(int => (int % 2).toFixed(0) != 0);
-  const onlyEven = integers.filter(int => (int % 2).toFixed(0) == 0);
+      const onlyOdd = integers.filter(int => (int % 2).toFixed(0) != 0);
+      const onlyEven = integers.filter(int => (int % 2).toFixed(0) == 0);
   
-  if(onlyOdd.length==1){
+      if(onlyOdd.length==1){
     
-    return onlyOdd[0]}else{
-      return onlyEven[0];
-    }
-  
-}
+          return onlyOdd[0]}else{
+          return onlyEven[0];
+      }
 
-console.log(findOutlier([2, 4, 0, 100, 4, 11, 2602, 36])); //Should return: 11 (the only odd number)
-console.log(findOutlier([160, 3, 1719, 19, 11, 13, -21])); //Should return: 160 (the only even number)
+  }
+
+     console.log(findOutlier([2, 4, 0, 100, 4, 11, 2602, 36])); //Should return: 11 (the only odd number)
+     console.log(findOutlier([160, 3, 1719, 19, 11, 13, -21])); //Should return: 160 (the only even number)
 
 </script>
 </body>
