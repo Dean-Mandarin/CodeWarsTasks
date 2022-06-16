@@ -122,7 +122,7 @@ The input array will always contain only positive numbers, and will never be emp
 
 function squareOrSquareRoot(array) {
 
-    return array.map(item => (Number.isInteger(Math.sqrt(item)) == true) ?
+    return array.map(item => (Number.isInteger(Math.sqrt(item)) === true) ?
         item = Math.sqrt(item) :
         item = Math.pow(item, 2)
     );
@@ -205,10 +205,10 @@ console.log([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]);
 //-----------------------------------------KYU 7--------------------------------------------------------------
 
 /* №1 Testing 1-2-3
-Write a function which takes a list of strings and returns each line 
+Write a function which takes a list of strings and returns each line
 prepended by the correct number.
 
-The numbering starts at 1. The format is n: string. 
+The numbering starts at 1. The format is n: string.
 Notice the colon and space in between.
 
 Examples: (Input --> Output)
@@ -230,7 +230,7 @@ console.log(`I Testing 1-2-3
 
 /*--------------------------------------------------------------------
 №2 Length and two values
-Given a number n and two values firstValue and secondValue, build 
+Given a number n and two values firstValue and secondValue, build
 an array of size n filled with firstValue and secondValue alternating.
 
 for input:                 5, true, false
@@ -436,4 +436,100 @@ console.log(`IX Count the divisors of a number
            100,0.1,10
     OUTPUT: ${interest(100, 0.1, 1)}
             ${interest(100, 0.1, 10)}`
+);
+
+//---------------------------------------------KYU 6-------------------------------------------------------
+/*--------------№1 How many zeros are at the end of n!!
+Define n!! as
+n!! = 1 * 3 * 5 * ... * n if n is odd,
+n!! = 2 * 4 * 6 * ... * n if n is even.
+Hence 8!! = 2 * 4 * 6 * 8 = 384, there is no zero at the end. 30!! has 3 zeros at the end.
+For a positive integer n, please count how many zeros are there at the end of n!!.
+
+Example:
+count_zeros_n_double_fact(30) should return 3
+*/
+
+function countZeros(n) {
+    let product = 1;
+    let start;
+    (n % 2 === 0) ? start = 2 : start = 1;
+
+    for (let i = start; i <= n; i += 2) {
+        product *= i;
+    }
+
+    let arr = String(product).split('');
+    let cntZero = 0;
+
+    //ищем с конца и останавливаем как только элемент не равен 0
+    //для тернарного оператора нельзя использовать break
+    for (let i = arr.length - 1; i >= 0; i--) {
+        if (arr[i] == 0) {
+            cntZero++;
+        } else break;
+    }
+
+    return cntZero;
+}
+
+console.log(`IX Count the divisors of a number
+    INPUT: 8
+           30
+    OUTPUT: ${countZeros(8)}
+            ${countZeros(30)}`
+);
+
+/*
+-------№2 Two Sum----------------------------------------------------
+Write a function that takes an array of numbers (integers for the tests) and a target number.
+It should find two different items in the array that, when added together, give the target value.
+The indices of these items should then be returned in a tuple /
+list (depending on your language) like so: (index1, index2).
+ */
+
+function twoSum(numbers, target) {
+    let idxArr = [];
+    for (let i = 0; i < numbers.length; i++) {
+        for (let j = 1; j < numbers.length; j++) {
+            if (numbers[i] + numbers[j] === target) {
+                idxArr[0] = i;
+                idxArr[1] = j;
+
+                return idxArr;
+            }
+        }
+    }
+
+}
+
+console.log(`II Two Sum
+    INPUT: [1,2,3], 4
+           [1234,5678,9012], 14690
+    OUTPUT: ${twoSum([1, 2, 3], 4)}
+            ${twoSum([1234, 5678, 9012], 14690)}`
+);
+
+/*
+---------------№ 6 Array.diff------------------------------------------------------------------------------------
+Your goal in this kata is to implement a difference function,
+which subtracts one list from another and returns the result.
+
+It should remove all values from list a, which are present in list b keeping their order.
+
+arrayDiff([1,2],[1]) == [2]
+If a value is present in b, all of its occurrences must be removed from the other:
+
+arrayDiff([1,2,2,2,3],[2]) == [1,3]
+ */
+
+function arrayDiff(a, b) {
+    return a.filter( item => !b.includes(item) );
+}
+
+console.log(`III Array.diff
+    INPUT: [1,2,2], [1]
+           [1,2,3], [1,2]
+    OUTPUT: ${arrayDiff([1, 2, 2], [1])}
+            ${arrayDiff([1, 2, 3], [1, 2])}`
 );
