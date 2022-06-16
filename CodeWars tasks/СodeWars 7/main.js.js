@@ -1,3 +1,209 @@
+//6 надо отсортировать строку по чиcлам, которая она содержит в словах
+
+function order(words) {
+    let arr = words.split(' ');
+
+    return arr.sort((a, b) => a.match(/\d+/) - b.match(/\d+/)).join(" ");
+}
+
+console.log(order("is2 Thi1s T4est 3a"));
+
+
+//---------7 Highest and Lowest----------------------------------------------------------------------
+// /*In this little assignment you are given a string of space separated numbers,
+// and have to return the highest and lowest number.
+//
+// Examples
+// highAndLow("1 2 3 4 5");  // return "5 1"
+// highAndLow("1 2 -3 4 5"); // return "5 -3"
+// highAndLow("1 9 3 4 -5"); // return "9 -5"*/
+
+function highAndLow(numbers) {
+    const arrStr = numbers.split(" ");
+    const arr = arrStr.map(item => Number(item)); //нормальный массив чисел
+    const max = Math.max.apply(null, arr);
+    const min = Math.min.apply(null, arr);
+
+    return `${max} ${min}`;
+}
+
+console.log(highAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4")); //"42 -9"
+console.log(highAndLow("1 2 3")); //"3 1"
+
+
+//-----7 You are a square!-------------------------------------------------------------------------------
+// Given an integral number, determine if its a square number:
+// In mathematics, a square number or perfect square is an integer that is the square of an integer;
+// in other words, it is the product of some integer with itself.
+//
+// The tests will always use some integral number, so dont worry about that in dynamic typed languages.
+// Examples
+// -1  =>  false
+// 0  =>  true
+// 3  =>  false
+// 4  =>  true
+// 25  =>  true
+// 26  =>  false
+
+let isSquare = function (n) {
+    return Number.isInteger(Math.sqrt(n)) === true;
+}
+
+console.log(isSquare(25));
+console.log(isSquare(-1));
+
+
+/*-----8 Powers of 2-----------------------------------------------------
+Complete the function that takes a non-negative integer n as input, and returns
+a list of all the powers of 2 with the exponent ranging from 0 to n ( inclusive ).
+
+     Examples
+    n = 0  ==> [1]        # [2^0]
+    n = 1  ==> [1, 2]     # [2^0, 2^1]
+    n = 2  ==> [1, 2, 4]  # [2^0, 2^1, 2^2]
+ */
+
+function powersOfTwo(n) {
+    let result = [];
+    for (let i = 0; i <= n; i++) {
+        result.push(Math.pow(2, i));
+    }
+
+    return result;
+}
+
+console.log(powersOfTwo(0));
+console.log(powersOfTwo(1));
+console.log(powersOfTwo(4));
+
+
+// ------8 Remove string spaces----------------------------------------------------
+// Simple, remove the spaces from the string, then return the resultant string.
+
+function noSpace(x) {
+
+    return x.split(" ").join('');
+}
+
+console.log(noSpace('8 j 8   mBliB8g  imjB8B8  jl  B'));
+
+
+/*------8 replace all the dots--------------------------------------------------------
+The code provided is supposed replace all the dots . in the specified String str with dashes -
+
+But it's not working properly.
+
+Task
+Fix the bug so we can all go home early.
+
+Notes
+String str will never be null.*/
+
+
+let replaceDots = function (str) {
+
+    return str.replace(/\./g, '-');
+}
+
+console.log(replaceDots("one.two.three"));
+
+
+/*-----8 To square or not to square---------------------------------------------------------------
+Write a method, that will get an integer array as parameter and will process every number from this array.
+
+Return a new array with processing every number of the input-array like this:
+
+If the number has an integer square root, take this, otherwise square the number.
+
+Example
+[4,3,9,7,2,1] -> [2,9,3,49,4,1]
+Notes
+The input array will always contain only positive numbers, and will never be empty or null.*/
+
+function squareOrSquareRoot(array) {
+
+    return array.map(item => (Number.isInteger(Math.sqrt(item)) == true) ?
+        item = Math.sqrt(item) :
+        item = Math.pow(item, 2)
+    );
+}
+
+console.log(squareOrSquareRoot([4, 3, 9, 7, 2, 1])); //[ 2, 9, 3, 49, 4, 1 ]
+
+
+/*-----8 Welcome to the city--------------------------------------------------------------
+Create a method sayHello/say_hello/SayHello that takes as input a name, city,
+and state to welcome a person. Note that name will be an array consisting of one or more
+values that should be joined together with one space between each, and the length of
+the name array in test cases will vary.
+
+   Example:
+   sayHello(['John', 'Smith'], 'Phoenix', 'Arizona')
+   This example will return the string Hello, John Smith! Welcome to Phoenix, Arizona!*/
+
+
+function sayHello(name, city, state) {
+    let fullName = name.join(" ");
+
+    return `Hello, ${fullName}! Welcome to ${city}, ${state}!`;
+}
+
+console.log(sayHello(['John', 'Smith'], 'Phoenix', 'Arizona'));
+
+
+/*-------------6 Find the parity Outlier------------------------------------------
+You are given an array (which will have a length of at least 3, but could be very large)
+containing integers. The array is either entirely comprised of odd integers
+or entirely comprised of even integers except for a single integer N.
+Write a method that takes the array as an argument and returns this "outlier" N.
+
+Examples
+[2, 4, 0, 100, 4, 11, 2602, 36]
+Should return: 11 (the only odd number)
+
+[160, 3, 1719, 19, 11, 13, -21]
+Should return: 160 (the only even number)*/
+
+function findOutlier(integers) {
+
+    const onlyOdd = integers.filter(int => (int % 2).toFixed(0) != 0);
+    const onlyEven = integers.filter(int => (int % 2).toFixed(0) == 0);
+
+    if (onlyOdd.length == 1) {
+
+        return onlyOdd[0]
+    } else {
+        return onlyEven[0];
+    }
+
+}
+
+console.log(findOutlier([2, 4, 0, 100, 4, 11, 2602, 36])); //Should return: 11 (the only odd number)
+console.log(findOutlier([160, 3, 1719, 19, 11, 13, -21])); //Should return: 160 (the only even number)
+
+
+/* ----------6 Sort the odd--------------------------------------------------------------------------------
+You will be given an array of numbers. You have to sort the odd numbers in
+ ascending order while leaving the even numbers at their original positions.
+
+Examples
+[7, 1]  =>  [1, 7]
+[5, 8, 6, 3, 4]  =>  [3, 8, 6, 5, 4]
+[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]  =>  [1, 8, 3, 6, 5, 4, 7, 2, 9, 0]*/
+
+function sortArray(array) {
+    let odd = array.filter(x => x % 2 != 0).sort((a, b) => a - b);
+
+    return array.map((x) => x % 2 ? odd.shift() : x);
+}
+
+console.log([7, 1]);
+console.log([5, 8, 6, 3, 4]);
+console.log([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]);
+
+
+//-----------------------------------------KYU 7--------------------------------------------------------------
+
 /* №1 Testing 1-2-3
 Write a function which takes a list of strings and returns each line 
 prepended by the correct number.
