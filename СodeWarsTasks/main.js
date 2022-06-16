@@ -45,7 +45,7 @@ console.log(highAndLow("1 2 3")); //"3 1"
 // 25  =>  true
 // 26  =>  false
 
-let isSquare = function (n) {
+const isSquare = function (n) {
     return Number.isInteger(Math.sqrt(n)) === true;
 }
 
@@ -64,7 +64,7 @@ a list of all the powers of 2 with the exponent ranging from 0 to n ( inclusive 
  */
 
 function powersOfTwo(n) {
-    let result = [];
+    const result = [];
     for (let i = 0; i <= n; i++) {
         result.push(Math.pow(2, i));
     }
@@ -100,7 +100,7 @@ Notes
 String str will never be null.*/
 
 
-let replaceDots = function (str) {
+const replaceDots = function (str) {
 
     return str.replace(/\./g, '-');
 }
@@ -143,7 +143,7 @@ the name array in test cases will vary.
 
 
 function sayHello(name, city, state) {
-    let fullName = name.join(" ");
+    const fullName = name.join(" ");
 
     return `Hello, ${fullName}! Welcome to ${city}, ${state}!`;
 }
@@ -169,12 +169,7 @@ function findOutlier(integers) {
     const onlyOdd = integers.filter(int => (int % 2).toFixed(0) != 0);
     const onlyEven = integers.filter(int => (int % 2).toFixed(0) == 0);
 
-    if (onlyOdd.length == 1) {
-
-        return onlyOdd[0]
-    } else {
-        return onlyEven[0];
-    }
+    return (onlyOdd.length == 1) ? onlyOdd[0] : onlyEven[0];
 
 }
 
@@ -192,14 +187,14 @@ Examples
 [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]  =>  [1, 8, 3, 6, 5, 4, 7, 2, 9, 0]*/
 
 function sortArray(array) {
-    let odd = array.filter(x => x % 2 != 0).sort((a, b) => a - b);
+    const odd = array.filter(x => x % 2 != 0).sort((a, b) => a - b);
 
     return array.map((x) => x % 2 ? odd.shift() : x);
 }
 
-console.log([7, 1]);
-console.log([5, 8, 6, 3, 4]);
-console.log([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]);
+console.log(sortArray([7, 1]));
+console.log(sortArray([5, 8, 6, 3, 4]));
+console.log(sortArray([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]));
 
 
 //-----------------------------------------KYU 7--------------------------------------------------------------
@@ -217,9 +212,7 @@ Examples: (Input --> Output)
 ["a", "b", "c"] --> ["1: a", "2: b", "3: c"]*/
 
 function number(array) {
-    const result = array.map((item, index) => ` ${index + 1}: ${item}`);
-
-    return result;
+    return array.map((item, index) => ` ${index + 1}: ${item}`);
 }
 
 console.log(`I Testing 1-2-3 
@@ -237,7 +230,7 @@ for input:                 5, true, false
 expected result would be: [true, false, true, false, true]*/
 
 function alternate(n, firstValue, secondValue) {
-    let arr = [];
+    const arr = [];
 
     for (let i = 0; i < n; i++) {
         (i % 2 == 0) ? arr[i] = firstValue : arr[i] = secondValue;
@@ -273,8 +266,8 @@ Greatest shared factor: 3
 Result: 12 and 39 are not coprimes
 */
 function isCoprime(x, y) {
-    let divisorsOne = [];
-    let divisorsTwo = [];
+    const divisorsOne = [];
+    const divisorsTwo = [];
     let test;
 
     for (let i = 2; i < x; i++) {
@@ -309,7 +302,7 @@ For example:
  */
 
 function evenNumbers(array, number) {
-    let fullEvenList = array.filter(item => item % 2 == 0);
+    const fullEvenList = array.filter(item => item % 2 == 0);
 
     return fullEvenList.splice(fullEvenList.length - number, number);
 }
@@ -329,7 +322,7 @@ Note: The function accepts an integer and returns an integer
  */
 
 function squareDigits(num) {
-    let sqrArr = ('' + num).split('').map(item => Math.pow(item, 2));
+    const sqrArr = ('' + num).split('').map(item => Math.pow(item, 2));
 
     return Number(sqrArr.join(''));
 }
@@ -370,7 +363,7 @@ For example, when an array is passed like [19, 5, 42, 2, 77], the output should 
  */
 
 function sumTwoSmallestNumbers(numbers) {
-    let arr = numbers.sort((a, b) => a - b);
+    const arr = numbers.sort((a, b) => a - b);
     return arr[0] + arr[1];
 }
 
@@ -424,7 +417,7 @@ interest(100, 0.1, 10)  =  [200, 259]
 */
 
 function interest(P, r, n) {
-    let result = [];
+    const result = [];
     result[0] = P + P * r * n;
     result[1] = Number((P * Math.pow(1 + r, n)).toFixed(0));
 
@@ -489,7 +482,7 @@ list (depending on your language) like so: (index1, index2).
  */
 
 function twoSum(numbers, target) {
-    let idxArr = [];
+    const idxArr = [];
     for (let i = 0; i < numbers.length; i++) {
         for (let j = 1; j < numbers.length; j++) {
             if (numbers[i] + numbers[j] === target) {
