@@ -1,7 +1,7 @@
 //6 надо отсортировать строку по чиcлам, которая она содержит в словах
-
+//const
 function order(words) {
-    let arr = words.split(' ');
+    const arr = words.split(' ');
 
     return arr.sort((a, b) => a.match(/\d+/) - b.match(/\d+/)).join(" ");
 }
